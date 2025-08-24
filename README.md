@@ -14,9 +14,6 @@ It implements the required pricing rules, clean APIs, and a polished UI that let
 > Given a list of shopping items, calculate the total cost.  
 > Items: **Apple** (35p), **Banana** (20p), **Melon** (50p, **BOGOF**), **Lime** (15p, **3‑for‑2**).  
 > Build a **Java backend** for pricing logic and a **JavaScript API layer/UI** that exposes add/view/total.  
-> Timebox ~2 hours; document trade‑offs if anything is omitted.
-
-Full prompt (rephrased) is included at the bottom of this README.
 
 ---
 
@@ -51,7 +48,7 @@ Currency is handled as **minor units (pence)** on the backend; UI formats using 
 ## ▶️ Quick Start
 
 ### 1) Backend (`cart/`)
-Requirements: **Java 17+**, **Maven**
+Requirements: **Java 21+**, **Maven**
 
 ```bash
 cd cart
@@ -60,7 +57,7 @@ cd cart
 ```
 
 ### 2) Frontend (`ui-cart/`)
-Requirements: **Node.js 18+**, **npm**
+Requirements: **Node.js 19+**, **npm**
 
 ```bash
 cd ui-cart
@@ -146,8 +143,8 @@ npm test
 
 ## 🧰 Tech Stack
 
-- **Backend:** Java 17, Spring Boot 3, Maven, JUnit 5
-- **Frontend:** React 18, Context API, Axios, CSS
+- **Backend:** Java 21, Spring Boot 3, Maven, JUnit 5
+- **Frontend:** React 19, Context API, Axios, CSS
 - **Formatting:** `Intl.NumberFormat` for currency (UI), minor units (backend)
 
 ---
@@ -162,10 +159,7 @@ npm test
 
 ---
 
-## ⏱️ Timebox Notes (What we’d do next)
-
-Within the suggested ~2 hours, we prioritized **correct pricing logic**, **clean API**, and a **usable UI**.  
-Given additional time, we would add:
+## What we’d do next
 
 - Persistent storage (Postgres/Redis) with schema for carts & pricing.
 - More robust auth (JWT) and input validation (Bean Validation).
