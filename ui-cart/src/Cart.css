@@ -1,0 +1,179 @@
+.cart-page {
+  padding: 20px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: linear-gradient(180deg, #1f2430, #171b24 40%, #151821);
+  min-height: 100vh;
+}
+
+.cart-header {
+  display: flex;
+  align-items: center;
+}
+
+.cart-header h1 {
+  margin: 0;
+  color: #fff;
+}
+
+.logout-btn {
+  margin-left: auto;
+  background: #ffffff22;
+  color: #fff;
+  border: 1px solid #ffffff44;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.signed-in {
+  margin-top: 6px;
+  color: #fff;
+}
+
+.error {
+  color: crimson;
+}
+
+.card {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  padding: 20px;
+  background: #fff;
+  max-width: 640px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  color: #111;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.fruit-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+}
+
+.fruit-media {
+  display: grid;
+  place-items: center;
+  height: 90px;
+  border-radius: 10px;
+  background: #f2f4ff;
+}
+
+.fruit-emoji {
+  font-size: 46px;
+}
+
+.fruit-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.fruit-title h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #111;
+}
+
+.fruit-title span {
+  font-size: 13px;
+  color: #111;
+}
+
+.fruit-controls {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+.qty {
+  min-width: 24px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: #111;
+}
+
+.card-footer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 14px;
+  font-size: 13px;
+  color: #111;
+}
+
+.bill-card h3 {
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  min-width: 520px;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 10px;
+  font-weight: 600;
+  font-size: 14px;
+  background: #f5f5f5;
+  color: #111;
+}
+
+td {
+  border-bottom: 1px solid #eee;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: #111;
+}
+
+td.center {
+  text-align: center;
+}
+
+td.right {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.total-label {
+  padding-top: 12px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.total-value {
+  padding-top: 12px;
+  font-weight: 700;
+  text-align: right;
+}

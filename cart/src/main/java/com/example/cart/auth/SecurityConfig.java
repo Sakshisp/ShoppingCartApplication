@@ -41,7 +41,7 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService users(
             @Value("${demo.user:testuser}") String user,
-            @Value("${demo.pass:password123}") String pass) {
+            @Value("${demo.pass:testpass@123}") String pass) {
 
         UserDetails u = User.withUsername(user)
                 .password("{noop}" + pass) // works with the delegating encoder

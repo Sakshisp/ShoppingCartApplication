@@ -2,22 +2,39 @@ package com.example.cart.service;
 
 import com.example.cart.model.CartLine;
 import com.example.cart.pricing.PriceCatalog;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
 import static java.util.List.of;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Tests for ShoppingCartService.calculateLines / calculateTotalPence.
- * Assumes PriceCatalog has prices (in pence):
- *  Apple=35, Banana=20, Melon=50 (BOGOF), Lime=15 (3-for-2).
- */
+@SpringBootTest(
+        classes = {
+                // minimal context: just the bean we need
+                PriceCatalog.class
+        }
+)
+// ensure the property file is on the classpath for the test
+@TestPropertySource(locations = {
+        "classpath:price-catalog.properties",
+})
 class ShoppingCartServiceTest {
 
-    private final ShoppingCartService service = new ShoppingCartService(new PriceCatalog());
+    @Autowired
+    private PriceCatalog priceCatalog;
+
+    private ShoppingCartService service;
+
+    @BeforeEach
+    void setUp() {
+        this.service = new ShoppingCartService(priceCatalog);
+    }
 
     @Test
     @DisplayName("Empty basket -> total 0p and no lines")
@@ -41,8 +58,7 @@ class ShoppingCartServiceTest {
         assertEquals(50,  service.calculateTotalPence(of("Melon", "Melon")));
         assertEquals(100, service.calculateTotalPence(of("Melon", "Melon", "Melon")));
         assertEquals(100, service.calculateTotalPence(of("Melon", "Melon", "Melon", "Melon")));
-        // case-insensitive check
-        assertEquals(50,  service.calculateTotalPence(of("melon")));
+        assertEquals(50,  service.calculateTotalPence(of("melon"))); // case-insensitive
     }
 
     @Test
@@ -50,8 +66,8 @@ class ShoppingCartServiceTest {
     void limeThreeForTwo() {
         assertEquals(15, service.calculateTotalPence(of("Lime")));
         assertEquals(30, service.calculateTotalPence(of("Lime", "Lime")));
-        assertEquals(30, service.calculateTotalPence(of("Lime", "Lime", "Lime")));      // pay 2
-        assertEquals(45, service.calculateTotalPence(of("Lime", "Lime", "Lime", "Lime"))); // pay 3
+        assertEquals(30, service.calculateTotalPence(of("Lime", "Lime", "Lime")));                 // pay 2
+        assertEquals(45, service.calculateTotalPence(of("Lime", "Lime", "Lime", "Lime")));         // pay 3
         assertEquals(60, service.calculateTotalPence(of("Lime", "Lime", "Lime", "Lime", "Lime"))); // pay 4
         assertEquals(60, service.calculateTotalPence(of("Lime", "Lime", "Lime", "Lime", "Lime", "Lime"))); // pay 4
     }
@@ -68,7 +84,6 @@ class ShoppingCartServiceTest {
         // 2 Apples = 70, 1 Banana = 20, 3 Melons => pay 2 = 100, 4 Limes => pay 3 = 45 => total 235
         assertEquals(235, service.calculateTotalPence(basket));
 
-        // Lines should be in insertion/distinct order: Apple, Banana, Melon, Lime
         List<CartLine> lines = service.calculateLines(basket);
         assertEquals(4, lines.size());
 
@@ -89,7 +104,7 @@ class ShoppingCartServiceTest {
         CartLine melon = lines.get(2);
         assertEquals("Melon", melon.item());
         assertEquals(3, melon.qty());
-        assertEquals(2, melon.chargeableQty()); // BOGOF
+        assertEquals(2, melon.chargeableQty()); // BOGO
         assertEquals(50, melon.unitPricePence());
         assertEquals(100, melon.lineTotalPence());
 
