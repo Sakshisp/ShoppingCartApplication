@@ -1,4 +1,4 @@
-package com.example.cart.pricing;
+package com.example.cart.pricing.offers;
 
 public class BuyOneGetOneFree implements Offer {
     @Override public int chargeableQuantity(int count) {

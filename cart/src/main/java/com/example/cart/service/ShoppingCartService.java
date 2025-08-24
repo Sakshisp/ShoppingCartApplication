@@ -1,7 +1,7 @@
 package com.example.cart.service;
 
 import com.example.cart.model.CartLine;
-import com.example.cart.pricing.Offer;
+import com.example.cart.pricing.offers.Offer;
 import com.example.cart.pricing.PriceCatalog;
 import org.springframework.stereotype.Service;
 
