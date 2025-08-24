@@ -1,0 +1,12 @@
+jwt:
+  secret: "dev-secret-change-me-0123456789abcdef0123456789abcdef"
+  issuer: "shopping-cart"
+  expiration-minutes: 120
+
+# Add all dev origins you actually use (React, Vite, etc.)
+cors:
+  allowed-origins: "http://localhost:3000"   # ✅ no /login
+
+logging:
+  level:
+    org.springframework.security: INFO   # set to DEBUG if you want verbose security logs
